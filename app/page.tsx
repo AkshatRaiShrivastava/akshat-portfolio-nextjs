@@ -1,5 +1,5 @@
 "use client";
-
+import type { IconType } from "react-icons";
 import type React from "react";
 
 import { useEffect, useRef, useState } from "react";
@@ -27,6 +27,8 @@ import {
   X,
   Send,
 } from "lucide-react";
+import { LucideIcon } from "lucide-react";
+
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -50,7 +52,7 @@ import {
   SiNetlify,
   SiVercel,
   SiTailwindcss,
-  SiGithub,
+  SiGithub as SiGithubIcon,
   SiFramer,
   SiAmazonwebservices,
   SiShadcnui,
@@ -64,7 +66,7 @@ const FloatingParticles = () => {
       {[...Array(50)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-1 h-1 bg-orange-500/20 rounded-full"
+          className="absolute w-3 h-3 bg-orange-500/20 rounded-full"
           initial={{
             x: Math.random() * window.innerWidth,
             y: Math.random() * window.innerHeight,
@@ -120,6 +122,41 @@ const HeroSection = ({
   const y = useTransform(scrollY, [0, 500], [0, 150]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
+  // Socials array with correct typing
+  const socials: {
+    icon: IconType | LucideIcon;
+    href: string;
+    color: string;
+    type?: string;
+  }[] = [
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/akshat-rai-shriv/",
+      color: "hover:text-blue-500",
+    },
+    {
+      icon: Github,
+      href: "https://github.com/AkshatRaiShrivastava",
+      color: "hover:text-gray-300",
+    },
+    {
+      icon: Instagram,
+      href: "https://instagram.com/build.gradle.akshat",
+      color: "hover:text-pink-500",
+    },
+    {
+      icon: SiSpotify,
+      href: "https://open.spotify.com/user/314erlctyhbs62oppjaotxq57y3m",
+      color: "hover:text-green-500",
+    },
+    {
+      icon: Mail,
+      href: "mailto:shrivastavak2005@gmail.com",
+      color: "hover:text-orange-500",
+      type: "mailto",
+    },
+  ];
+
   return (
     <motion.section
       className="min-h-screen flex flex-col lg:flex-row-reverse items-center justify-between px-8 lg:px-16 relative overflow-hidden"
@@ -160,29 +197,41 @@ const HeroSection = ({
           </motion.p>
           <motion.p
             className="text-gray-400 text-lg max-w-2xl mb-8 leading-relaxed"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.9 }}
+            initial={false}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
           >
             I am a passionate and dedicated professional with a strong
             background in Mobile App Developmment.
           </motion.p>
           <motion.div
             className="flex gap-4"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.1 }}
+            initial={false}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
           >
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full">
-              <Download className="w-4 h-4 mr-2" />
-              Download CV
+            <Button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 items-center rounded-full">
+              <a
+                href="/assets/Akshat_Rai_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-row items-center"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Download CV
+              </a>
             </Button>
             <Button
+              asChild
               variant="outline"
               className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-8 py-3 rounded-full"
             >
-              <Eye className="w-4 h-4 mr-2" />
-              View Projects
+              <a href="#projects">
+                <Eye className="w-4 h-4 mr-2" />
+                View Projects
+              </a>
             </Button>
           </motion.div>
         </motion.div>
@@ -209,7 +258,7 @@ const HeroSection = ({
         >
           <div className="w-60 h-60 lg:w-80 lg:h-80 bg-gradient-to-br from-orange-500 to-pink-500 rounded-full blur-3xl opacity-20 absolute inset-0"></div>
           <Image
-            src="/assets/akshat_3.jpg"
+            src="/assets/akshat_1.jpg"
             alt="Akshat Rai Avatar"
             width={400}
             height={400}
@@ -226,50 +275,26 @@ const HeroSection = ({
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, delay: 1.3 }}
       >
-        {[
-          {
-            icon: Linkedin,
-            href: "https://www.linkedin.com/in/akshat-rai-shriv/",
-            color: "hover:text-blue-500",
-          },
-          {
-            icon: Github,
-            href: "https://github.com/AkshatRaiShrivastava",
-            color: "hover:text-gray-300",
-          },
-          {
-            icon: Instagram,
-            href: "https://instagram.com/build.gradle.akshat",
-            color: "hover:text-pink-500",
-          },
-          {
-            icon: SiSpotify,
-            href: "https://open.spotify.com/user/314erlctyhbs62oppjaotxq57y3m",
-            color: "hover:text-green-500",
-          },
-          {
-            icon: Mail,
-            href: "mailto:shrivastavak2005@gmail.com",
-            color: "hover:text-orange-500",
-            type: "mailto",
-          },
-        ].map((social, index) => (
-          <motion.button
-            key={index}
-            onClick={() => {
-              if (social.type === "mailto") {
-                window.location.href = social.href;
-                return;
-              }
-              window.open(social.href, "_blank");
-            }}
-            className={`p-3 bg-gray-800/50 backdrop-blur-sm rounded-full text-gray-400 transition-all duration-300 ${social.color} hover:scale-110`}
-            whileHover={{ scale: 1.2, rotate: 360 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <social.icon className="w-5 h-5" />
-          </motion.button>
-        ))}
+        {socials.map((social, index) => {
+          const Icon = social.icon as React.ElementType;
+          return (
+            <motion.button
+              key={index}
+              onClick={() => {
+                if (social.type === "mailto") {
+                  window.location.href = social.href;
+                  return;
+                }
+                window.open(social.href, "_blank");
+              }}
+              className={`p-3 bg-gray-800/50 backdrop-blur-sm rounded-full text-gray-400 transition-all duration-300 ${social.color} hover:scale-110`}
+              whileHover={{ scale: 1.2, rotate: 360 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              {Icon ? <Icon className="w-5 h-5" /> : null}
+            </motion.button>
+          );
+        })}
       </motion.div>
     </motion.section>
   );
@@ -278,7 +303,7 @@ const HeroSection = ({
 // Experience section
 const ExperienceSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { margin: "-100px" }); // removed once: true
 
   const experiences = [
     {
@@ -347,7 +372,7 @@ const ExperienceSection = () => {
           className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
         >
           Experience
         </motion.h2>
@@ -356,9 +381,10 @@ const ExperienceSection = () => {
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
+              initial={false}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ amount: 0.2 }} // removed once: true
+              transition={{ duration: 0.6, ease: "easeOut" }}
               className="relative"
             >
               <Card className="bg-gray-800/50 backdrop-blur-sm border-gray-700 hover:border-orange-500/50 transition-all duration-300 overflow-hidden group">
@@ -413,7 +439,7 @@ const ExperienceSection = () => {
 // Projects section
 const ProjectsSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { margin: "-100px" }); // removed once: true
 
   const projects = [
     {
@@ -519,7 +545,7 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section ref={ref} className="py-20 px-8 lg:px-16 relative">
+    <section ref={ref} id="projects" className="py-20 px-8 lg:px-16 relative">
       <motion.div
         initial={{ opacity: 0, y: 100 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -539,11 +565,16 @@ const ProjectsSection = () => {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 100, rotateX: -15 }}
-              animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              whileHover={{ y: -10, rotateX: 5 }}
-              className="group perspective-1000"
+              initial={false}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ amount: 0.15 }} // removed once: true
+              transition={{
+                duration: 0.4,
+                delay: index * 0.07,
+                ease: "easeOut",
+              }}
+              whileHover={{ scale: 1.03, y: -6 }}
+              className="group"
             >
               <Card className="bg-gray-800/50 backdrop-blur-sm border-gray-700 hover:border-orange-500/50 transition-all duration-300 overflow-hidden h-full">
                 <CardContent className="p-6 flex flex-col h-full relative">
@@ -630,9 +661,10 @@ const ProjectsSection = () => {
 // Technologies section
 const TechnologiesSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { margin: "-100px" }); // removed once: true
 
-  const techStack = [
+  // Explicitly type icon as IconType
+  const techStack: { name: string; icon: IconType; color: string }[] = [
     { name: "Flutter", icon: SiFlutter, color: "text-blue-400" },
     { name: "Dart", icon: SiDart, color: "text-blue-600" },
     { name: "Kotlin", icon: SiKotlin, color: "text-purple-500" },
@@ -647,7 +679,7 @@ const TechnologiesSection = () => {
     { name: "Spring Boot", icon: SiSpringboot, color: "text-green-500" },
   ];
 
-  const services = [
+  const services: { name: string; icon: IconType; color: string }[] = [
     { name: "Postman", icon: SiPostman, color: "text-orange-500" },
     { name: "MongoDB", icon: SiMongodb, color: "text-green-600" },
     { name: "Firebase", icon: SiFirebase, color: "text-yellow-500" },
@@ -656,7 +688,7 @@ const TechnologiesSection = () => {
     { name: "ShadCN UI", icon: SiShadcnui, color: "text-gray-400" },
     { name: "AWS", icon: SiAmazonwebservices, color: "text-orange-600" },
     { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-cyan-500" },
-    { name: "GitHub", icon: SiGithub, color: "text-gray-300" },
+    { name: "GitHub", icon: SiGithubIcon, color: "text-gray-300" },
     { name: "Framer Motion", icon: SiFramer, color: "text-pink-500" },
   ];
 
@@ -664,15 +696,17 @@ const TechnologiesSection = () => {
     <section ref={ref} className="py-20 px-8 lg:px-16 relative">
       <motion.div
         initial={{ opacity: 0, y: 100 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ amount: 0.2 }}
         transition={{ duration: 0.8 }}
         className="max-w-6xl mx-auto"
       >
         <motion.h2
           className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent"
           initial={{ opacity: 0, scale: 0.5 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ amount: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
         >
           Technologies
         </motion.h2>
@@ -681,31 +715,42 @@ const TechnologiesSection = () => {
           <motion.h3
             className="text-2xl font-semibold text-gray-400 mb-8"
             initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             Tech Stack
           </motion.h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {techStack.map((tech, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0, rotate: -180 }}
-                animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                className="group"
-              >
-                <Card className="bg-gray-800/50 backdrop-blur-sm border-gray-700 hover:border-orange-500/50 transition-all duration-300 p-6 text-center cursor-pointer">
-                  <tech.icon
-                    className={`w-8 h-8 mx-auto mb-3 ${tech.color} group-hover:scale-125 transition-transform duration-300`}
-                  />
-                  <p className="text-white font-medium group-hover:text-orange-500 transition-colors">
-                    {tech.name}
-                  </p>
-                </Card>
-              </motion.div>
-            ))}
+            {techStack.map((tech, index) => {
+              const Icon = tech.icon as React.ElementType;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ amount: 0.2 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.07,
+                    ease: "easeOut",
+                  }}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="group"
+                >
+                  <Card className="bg-gray-800/50 backdrop-blur-sm border-gray-700 hover:border-orange-500/50 transition-all duration-300 p-6 text-center cursor-pointer">
+                    {Icon ? (
+                      <Icon
+                        className={`w-8 h-8 mx-auto mb-3 ${tech.color} group-hover:scale-125 transition-transform duration-300`}
+                      />
+                    ) : null}
+                    <p className="text-white font-medium group-hover:text-orange-500 transition-colors">
+                      {tech.name}
+                    </p>
+                  </Card>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
@@ -713,31 +758,42 @@ const TechnologiesSection = () => {
           <motion.h3
             className="text-2xl font-semibold text-gray-400 mb-8"
             initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ amount: 0.2 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             Services and Tools
           </motion.h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0, rotate: 180 }}
-                animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.1}}
-                whileHover={{ scale: 1.1, rotate: -5 }}
-                className="group"
-              >
-                <Card className="bg-gray-800/50 backdrop-blur-sm border-gray-700 hover:border-orange-500/50 transition-all duration-300 p-6 text-center cursor-pointer">
-                  <service.icon
-                    className={`w-8 h-8 mx-auto mb-3 ${service.color} group-hover:scale-125 transition-transform duration-300`}
-                  />
-                  <p className="text-white font-medium group-hover:text-orange-500 transition-colors">
-                    {service.name}
-                  </p>
-                </Card>
-              </motion.div>
-            ))}
+            {services.map((service, index) => {
+              const Icon = service.icon as React.ElementType;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ amount: 0.2 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: index * 0.07,
+                    ease: "easeOut",
+                  }}
+                  whileHover={{ scale: 1.1, rotate: -5 }}
+                  className="group"
+                >
+                  <Card className="bg-gray-800/50 backdrop-blur-sm border-gray-700 hover:border-orange-500/50 transition-all duration-300 p-6 text-center cursor-pointer">
+                    {Icon ? (
+                      <Icon
+                        className={`w-8 h-8 mx-auto mb-3 ${service.color} group-hover:scale-125 transition-transform duration-300`}
+                      />
+                    ) : null}
+                    <p className="text-white font-medium group-hover:text-orange-500 transition-colors">
+                      {service.name}
+                    </p>
+                  </Card>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </motion.div>
@@ -748,7 +804,7 @@ const TechnologiesSection = () => {
 // Contact section with form
 const ContactSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { margin: "-100px" }); // removed once: true
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -887,7 +943,12 @@ const ContactSection = () => {
                 <Card
                   className={`bg-gray-800/50 backdrop-blur-sm border-gray-700 transition-all duration-300 p-8 text-center h-full ${option.color}`}
                 >
-                  <option.icon className="w-12 h-12 mx-auto mb-4 text-gray-400 group-hover:scale-125 transition-all duration-300" />
+                  {(() => {
+                    const Icon = option.icon as React.ElementType;
+                    return Icon ? (
+                      <Icon className="w-12 h-12 mx-auto mb-4 text-gray-400 group-hover:scale-125 transition-all duration-300" />
+                    ) : null;
+                  })()}
                   <h3
                     className="text-xl font-bold text-white mb-2 group-hover:text-current transition-colors
                     "
@@ -920,7 +981,7 @@ const ContactSection = () => {
             exit={{ scale: 0.5, opacity: 0, rotateX: 15 }}
             transition={{ type: "spring", duration: 0.5 }}
             className="bg-gray-900/95 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 w-full max-w-2xl max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e: { stopPropagation: () => any }) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-8">
               <h3 className="text-3xl font-bold bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
