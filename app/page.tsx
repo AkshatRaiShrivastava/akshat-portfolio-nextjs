@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useEffect, useRef, useState } from "react"
-import { motion, useScroll, useTransform, useInView } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   Github,
   Linkedin,
@@ -26,11 +26,36 @@ import {
   Eye,
   X,
   Send,
-} from "lucide-react"
-import Image from "next/image"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
+} from "lucide-react";
+import Image from "next/image";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { DiAndroid, DiJava } from "react-icons/di";
+import {
+  SiFlutter,
+  SiDart,
+  SiKotlin,
+  SiAndroid,
+  SiReact,
+  SiReactrouter,
+  SiNodedotjs,
+  SiTypescript,
+  SiNextdotjs,
+  SiJavascript,
+  SiSpringboot,
+  SiPostman,
+  SiMongodb,
+  SiFirebase,
+  SiNetlify,
+  SiVercel,
+  SiTailwindcss,
+  SiGithub,
+  SiFramer,
+  SiAmazonwebservices,
+  SiShadcnui,
+  SiSpotify,
+} from "react-icons/si";
 
 // Floating particles component
 const FloatingParticles = () => {
@@ -56,8 +81,8 @@ const FloatingParticles = () => {
         />
       ))}
     </div>
-  )
-}
+  );
+};
 
 // Animated background grid
 const AnimatedGrid = () => {
@@ -65,28 +90,44 @@ const AnimatedGrid = () => {
     <div className="fixed inset-0 pointer-events-none opacity-10">
       <svg width="100%" height="100%" className="absolute inset-0">
         <defs>
-          <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="currentColor" strokeWidth="1" />
+          <pattern
+            id="grid"
+            width="50"
+            height="50"
+            patternUnits="userSpaceOnUse"
+          >
+            <path
+              d="M 50 0 L 0 0 0 50"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1"
+            />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#grid)" />
       </svg>
     </div>
-  )
-}
+  );
+};
 
 // Hero section
-const HeroSection = ({ setShowForm }: { setShowForm: (show: boolean) => void }) => {
-  const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 500], [0, 150])
-  const opacity = useTransform(scrollY, [0, 300], [1, 0])
+const HeroSection = ({
+  setShowForm,
+}: {
+  setShowForm: (show: boolean) => void;
+}) => {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   return (
     <motion.section
-      className="min-h-screen flex items-center justify-between px-8 lg:px-16 relative overflow-hidden"
+      className="min-h-screen flex flex-col lg:flex-row-reverse items-center justify-between px-8 lg:px-16 relative overflow-hidden"
       style={{ y, opacity }}
     >
-      <div className="flex-1 z-10">
+      {/* Hero Text */}
+      <div className="flex-1 z-10 order-2 lg:order-1 w-full">
+        {/* ...existing text content... */}
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
@@ -102,7 +143,7 @@ const HeroSection = ({ setShowForm }: { setShowForm: (show: boolean) => void }) 
             Hi, I am
           </motion.h1>
           <motion.h2
-            className="text-4xl lg:text-6xl font-bold mb-4 text-white"
+            className="text-6xl lg:text-8xl font-bold mb-4 text-white"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
@@ -123,9 +164,8 @@ const HeroSection = ({ setShowForm }: { setShowForm: (show: boolean) => void }) 
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.9 }}
           >
-            I am a passionate and dedicated professional with a strong background in Java, Spring Boot, Android
-            Development, Web Development and SCADA Development. With hands-on experience in TypeScript, Next.js, Spring
-            Boot, Java, Kotlin, Flutter.
+            I am a passionate and dedicated professional with a strong
+            background in Mobile App Developmment.
           </motion.p>
           <motion.div
             className="flex gap-4"
@@ -148,8 +188,9 @@ const HeroSection = ({ setShowForm }: { setShowForm: (show: boolean) => void }) 
         </motion.div>
       </div>
 
+      {/* Hero Image */}
       <motion.div
-        className="flex-1 flex justify-center items-center"
+        className="flex-1 flex justify-center items-center order-1 lg:order-2 w-full mb-8 lg:mb-0"
         initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
         animate={{ opacity: 1, scale: 1, rotate: 0 }}
         transition={{ duration: 1, delay: 0.5 }}
@@ -166,13 +207,14 @@ const HeroSection = ({ setShowForm }: { setShowForm: (show: boolean) => void }) 
           }}
           className="relative"
         >
-          <div className="w-80 h-80 bg-gradient-to-br from-orange-500 to-pink-500 rounded-full blur-3xl opacity-20 absolute inset-0"></div>
+          <div className="w-60 h-60 lg:w-80 lg:h-80 bg-gradient-to-br from-orange-500 to-pink-500 rounded-full blur-3xl opacity-20 absolute inset-0"></div>
           <Image
-            src="/placeholder.svg?height=400&width=400"
+            src="/assets/akshat_3.jpg"
             alt="Akshat Rai Avatar"
             width={400}
             height={400}
-            className="relative z-10 drop-shadow-2xl"
+            className="relative z-10 drop-shadow-2xl w-48 h-48 lg:w-80 lg:h-80 object-cover rounded-full"
+            priority
           />
         </motion.div>
       </motion.div>
@@ -185,20 +227,41 @@ const HeroSection = ({ setShowForm }: { setShowForm: (show: boolean) => void }) 
         transition={{ duration: 1, delay: 1.3 }}
       >
         {[
-          { icon: Linkedin, href: "https://linkedin.com/in/akshat-rai", color: "hover:text-blue-500" },
-          { icon: Github, href: "https://github.com/akshat-rai", color: "hover:text-gray-300" },
-          { icon: Instagram, href: "https://instagram.com/akshat.rai", color: "hover:text-pink-500" },
-          { icon: Music, href: "https://open.spotify.com/user/akshat-rai", color: "hover:text-green-500" },
-          { icon: Mail, href: "#", color: "hover:text-orange-500", action: "form" },
+          {
+            icon: Linkedin,
+            href: "https://www.linkedin.com/in/akshat-rai-shriv/",
+            color: "hover:text-blue-500",
+          },
+          {
+            icon: Github,
+            href: "https://github.com/AkshatRaiShrivastava",
+            color: "hover:text-gray-300",
+          },
+          {
+            icon: Instagram,
+            href: "https://instagram.com/build.gradle.akshat",
+            color: "hover:text-pink-500",
+          },
+          {
+            icon: SiSpotify,
+            href: "https://open.spotify.com/user/314erlctyhbs62oppjaotxq57y3m",
+            color: "hover:text-green-500",
+          },
+          {
+            icon: Mail,
+            href: "mailto:shrivastavak2005@gmail.com",
+            color: "hover:text-orange-500",
+            type: "mailto",
+          },
         ].map((social, index) => (
           <motion.button
             key={index}
             onClick={() => {
-              if (social.action === "form") {
-                setShowForm(true)
-              } else {
-                window.open(social.href, "_blank")
+              if (social.type === "mailto") {
+                window.location.href = social.href;
+                return;
               }
+              window.open(social.href, "_blank");
             }}
             className={`p-3 bg-gray-800/50 backdrop-blur-sm rounded-full text-gray-400 transition-all duration-300 ${social.color} hover:scale-110`}
             whileHover={{ scale: 1.2, rotate: 360 }}
@@ -209,40 +272,68 @@ const HeroSection = ({ setShowForm }: { setShowForm: (show: boolean) => void }) 
         ))}
       </motion.div>
     </motion.section>
-  )
-}
+  );
+};
 
 // Experience section
 const ExperienceSection = () => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const experiences = [
     {
-      title: "Senior Full-Stack Developer",
-      company: "Tech Innovations Ltd",
-      period: "2023 - Present",
+      title: "Co-Founder & CEO",
+      company: "NexYug Tech",
+      period: "Feb 2025 - Present",
       description:
-        "Leading development of scalable web applications using React, Node.js, and cloud technologies. Mentoring junior developers and architecting system solutions.",
-      technologies: ["React", "Node.js", "AWS", "TypeScript", "MongoDB"],
+        "Building NexYug Tech, a startup where we create cutting-edge software solutions for web, mobile, and AI applications that transform businesses and drive innovation.",
+      technologies: [
+        "Mentorship",
+        "Guidance",
+        "Android",
+        "Web",
+        "AI",
+        "Desktop",
+        "iOS",
+      ],
     },
     {
-      title: "Android Developer",
-      company: "Mobile Solutions Inc",
-      period: "2022 - 2023",
-      description:
-        "Developed and maintained Android applications with over 100k+ downloads. Implemented modern Android architecture patterns and optimized app performance.",
-      technologies: ["Kotlin", "Android", "Firebase", "MVVM", "Retrofit"],
+      title: "Mobile App Developer",
+      company: "Social Chitra",
+      period: "June 2025 - present",
+      description: "Developing a SaaS platform for sports industry",
+      technologies: ["Flutter", "Dart", "Android", "iOS", "Firebase", "Nodejs"],
     },
     {
-      title: "Full-Stack Developer",
-      company: "StartupXYZ",
-      period: "2021 - 2022",
+      title: "Flutter Developer",
+      company: "The Coders Hub",
+      period: "Feb 2025 - May 2025",
       description:
-        "Built end-to-end web applications from concept to deployment. Collaborated with cross-functional teams to deliver high-quality software solutions.",
-      technologies: ["Java", "Spring Boot", "React", "PostgreSQL", "Docker"],
+        "Worked on a community app where people can connect and share their thoughts. Added multilingual feature, added chat notification based app routing, optimised AGP.",
+      technologies: ["Flutter", "Dart", "Firebase", "Android", "FCM", "AGP"],
     },
-  ]
+    {
+      title: "Software Developer",
+      company: "M V Multitech Controls",
+      period: "Mar 2022 - Present",
+      description:
+        "Built their website, worked on many industrial projects including Robotic machines, SCADA Applications, PLC programming, and micro-controllers' projects.",
+      technologies: [
+        "C#",
+        ".NET",
+        "SQL",
+        "Java",
+        "Javascript",
+        "HTML",
+        "CSS",
+        "Robotics",
+        "C++",
+        "PLC",
+        "TCPIP",
+        "Modbus",
+      ],
+    },
+  ];
 
   return (
     <section ref={ref} className="py-20 px-8 lg:px-16 relative">
@@ -274,20 +365,32 @@ const ExperienceSection = () => {
                 <CardContent className="p-8">
                   <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
                     <div>
-                      <h3 className="text-2xl font-bold text-white mb-2">{exp.title}</h3>
-                      <p className="text-orange-500 text-lg font-semibold">{exp.company}</p>
+                      <h3 className="text-2xl font-bold text-white mb-2">
+                        {exp.title}
+                      </h3>
+                      <p className="text-orange-500 text-lg font-semibold">
+                        {exp.company}
+                      </p>
                     </div>
-                    <Badge variant="outline" className="border-orange-500 text-orange-500 w-fit">
+                    <Badge
+                      variant="outline"
+                      className="border-orange-500 text-orange-500 w-fit"
+                    >
                       {exp.period}
                     </Badge>
                   </div>
-                  <p className="text-gray-300 mb-6 leading-relaxed">{exp.description}</p>
+                  <p className="text-gray-300 mb-6 leading-relaxed">
+                    {exp.description}
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     {exp.technologies.map((tech, techIndex) => (
                       <motion.span
                         key={techIndex}
                         className="px-3 py-1 bg-orange-500/20 text-orange-400 rounded-full text-sm"
-                        whileHover={{ scale: 1.1, backgroundColor: "rgba(249, 115, 22, 0.3)" }}
+                        whileHover={{
+                          scale: 1.1,
+                          backgroundColor: "rgba(249, 115, 22, 0.3)",
+                        }}
                       >
                         {tech}
                       </motion.span>
@@ -304,73 +407,116 @@ const ExperienceSection = () => {
         </div>
       </motion.div>
     </section>
-  )
-}
+  );
+};
 
 // Projects section
 const ProjectsSection = () => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const projects = [
     {
-      title: "Wee Wear",
-      description: "A clothing app which shows the latest and trendy clothing styles and wears.",
-      image: "/placeholder.svg?height=300&width=400",
-      technologies: ["Android", "Java", "XML", "Firebase", "Firestore", "Android Studio"],
-      github: "#",
+      title: "Clean City App",
+      description:
+        "CleanCity is a tech-driven platform that empowers citizens to report and track urban sanitation issues in real-time. It bridges the gap between communities and authorities to create cleaner, smarter, and more sustainable cities.",
+      image: "/assets/pr7.png",
+      technologies: ["Flutter", "Firebase", "Dart", "Android", "Cloudinary"],
+      github: "https://github.com/AkshatRaiShrivastava/clean-city-mobile-app",
       demo: "#",
+      period: "Apr 2025 - Present",
+    },
+    {
+      title: "Wee Wear",
+      description:
+        "A clothing app which shows the latest and trendy clothing styles and wears.",
+      image: "/assets/pr5.png",
+      technologies: [
+        "Android",
+        "Java",
+        "XML",
+        "Firebase",
+        "Firestore",
+        "Android Studio",
+      ],
+      github: "https://github.com/AkshatRaiShrivastava/wee-wear",
+      demo: "https://github.com/AkshatRaiShrivastava/wee-wear/releases/tag/java",
       period: "Aug 2024 - Sept 2024",
     },
     {
-      title: "Music Stream",
+      title: "Music Streaming App",
       description:
-        "A music streaming application which fetches songs, playlists and lyrics from the database, includes add to favourite option, secure firebase login, repeat songs.",
-      image: "/placeholder.svg?height=300&width=400",
-      technologies: ["Android", "Kotlin", "XML", "Firebase", "Firestore", "Android Studio"],
-      github: "#",
-      demo: "#",
-      period: "Aug 2024 - Sept 2024",
+        "A music streaming app which fetches music from spotify track id and also syncs the lyrics.",
+      image: "/assets/pr6.png",
+      technologies: [
+        "Flutter",
+        "Dart",
+        "Spotify",
+        "Firebase",
+        "MusixMatch API",
+        "Android Studio",
+      ],
+      github:
+        "https://github.com/AkshatRaiShrivastava/music-player-application-in-flutter",
+      demo: "https://www.linkedin.com/posts/akshat-rai-shriv_flutter-spotify-firebase-activity-7237835306358427650-Ta6-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEclvrYBp50dAZywMd_m47NAlIhrbtOdp3M",
+      period: "Oct 2024 - Nov 2024",
     },
     {
       title: "SCADA Application",
       description:
-        "A desktop application which centralise and digitalise the data from various machines and work stations.",
-      image: "/placeholder.svg?height=300&width=400",
+        "A desktop application which centralize and digitalise the data from various machines and work stations.",
+      image: "/assets/pr9.png",
       technologies: ["C#", "Windows Development", "SQL", "Modbus", "TCP/IP"],
-      demo: "#",
+
       period: "Mar 2023 - Jan 2024",
     },
     {
       title: "Jotify",
       description:
         "An online note taking app with offline caching capability, secure sign-in, and image uploading feature.",
-      image: "/placeholder.svg?height=300&width=400",
+      image: "/assets/pr2.png",
       technologies: ["Flutter", "Dart", "Firebase", "Cloudinary"],
-      github: "#",
-      demo: "#",
+      github: "https://github.com/AkshatRaiShrivastava/jotify",
+      demo: "https://github.com/AkshatRaiShrivastava/jotify/releases/tag/v1.2.0",
       period: "Jan 2025 - Jan 2025",
     },
     {
       title: "Minimal Chat App",
       description:
-        "Built a cross-platform Chatting App using Flutter and Firebase, leveraging real-time capabilities for a seamless messaging experience!",
-      image: "/placeholder.svg?height=300&width=400",
-      technologies: ["Flutter", "Dart", "Firebase", "Cloudinary", "Provider", "Android"],
-      github: "#",
-      demo: "#",
+        "Built a cross-platform Chatting App using Flutter and Firebase, leveraging real-time capabilities for a seamless messaging and video/voice call experience!",
+      image: "/assets/pr4.png",
+      technologies: [
+        "Flutter",
+        "Dart",
+        "Firebase",
+        "Cloudinary",
+        "Provider",
+        "Android",
+      ],
+      github: "https://github.com/AkshatRaiShrivastava/minimal-chat-app",
+      demo: "https://www.linkedin.com/posts/akshat-rai-shriv_flutterdev-firebase-sideproject-activity-7282776501643526145-zCUa?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEclvrYBp50dAZywMd_m47NAlIhrbtOdp3M",
       period: "Dec 2024 - Jan 2025",
     },
     {
       title: "Realtime Code Editor",
-      description: "Online code editor on which the users can collaborate and code.",
-      image: "/placeholder.svg?height=300&width=400",
+      description:
+        "Online code editor on which the users can collaborate and code.",
+      image: "/assets/pr3.png",
       technologies: ["React", "MongoDB", "Express", "Socket.IO", "Node.js"],
-      github: "#",
-      demo: "#",
+      github: "https://github.com/AkshatRaiShrivastava/realtime-code-editor",
+      demo: "https://realtime-code-editor-omdg.onrender.com/",
       period: "Dec 2024 - Jan 2025",
     },
-  ]
+    {
+      title: "Learning App UI",
+      description: "UI of a learning app.",
+      image: "/assets/pr1.png",
+      technologies: ["Flutter", "Dart"],
+      github: "https://github.com/AkshatRaiShrivastava/coding-juniors",
+      demo: "#",
+      period: "Sept 2024 - Oct 2024",
+    },
+  ];
 
   return (
     <section ref={ref} className="py-20 px-8 lg:px-16 relative">
@@ -400,44 +546,76 @@ const ProjectsSection = () => {
               className="group perspective-1000"
             >
               <Card className="bg-gray-800/50 backdrop-blur-sm border-gray-700 hover:border-orange-500/50 transition-all duration-300 overflow-hidden h-full">
-                <div className="relative overflow-hidden">
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    width={400}
-                    height={300}
-                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
-                  <Badge className="absolute top-4 right-4 bg-orange-500 text-white">{project.period}</Badge>
-                </div>
-                <CardContent className="p-6 flex flex-col h-full">
+                <CardContent className="p-6 flex flex-col h-full relative">
+                  {/* Image and overlay */}
+                  <div className="relative mb-4">
+                    <Image
+                      src={project.image || "/placeholder.svg"}
+                      alt={project.title}
+                      width={400}
+                      height={300}
+                      className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-100 rounded-lg"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60 rounded-lg"></div>
+                    <Badge className="absolute top-4 right-4 bg-orange-500 text-white">
+                      {project.period}
+                    </Badge>
+                  </div>
+                  {/* Content */}
                   <h3 className="text-xl font-bold text-white mb-3 group-hover:text-orange-500 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-gray-300 mb-4 flex-grow leading-relaxed">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.technologies.map((tech, techIndex) => (
-                      <span key={techIndex} className="px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                  <p className="text-gray-300 mb-4 flex-grow leading-relaxed">
+                    {project.description}
+                  </p>
+                  {/* Technologies used */}
+                  {project.technologies && project.technologies.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies.map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="px-2 py-1 bg-orange-500/20 text-orange-400 rounded text-xs"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  {/* Links */}
                   <div className="flex gap-3 mt-auto">
-                    {project.github && (
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white flex-1"
+                    {project.github && project.github !== "#" && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1"
                       >
-                        <Github className="w-4 h-4 mr-2" />
-                        GitHub
-                      </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white w-full"
+                        >
+                          <Github className="w-4 h-4 mr-2" />
+                          GitHub
+                        </Button>
+                      </a>
                     )}
-                    <Button size="sm" className="bg-orange-500 hover:bg-orange-600 text-white flex-1">
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Demo
-                    </Button>
+                    {project.demo && project.demo !== "#" && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1"
+                      >
+                        <Button
+                          size="sm"
+                          className="bg-orange-500 hover:bg-orange-600 text-white w-full"
+                        >
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          Demo
+                        </Button>
+                      </a>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -446,40 +624,41 @@ const ProjectsSection = () => {
         </div>
       </motion.div>
     </section>
-  )
-}
+  );
+};
 
 // Technologies section
 const TechnologiesSection = () => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const techStack = [
-    { name: "Java", icon: Code, color: "text-red-500" },
-    { name: "ReactJS", icon: Globe, color: "text-blue-500" },
-    { name: "Spring Boot", icon: Server, color: "text-green-500" },
-    { name: "Next.js", icon: Globe, color: "text-white" },
-    { name: "Android", icon: Smartphone, color: "text-green-400" },
-    { name: "Kotlin", icon: Code, color: "text-purple-500" },
-    { name: "MongoDB", icon: Database, color: "text-green-600" },
-    { name: "Flutter", icon: Smartphone, color: "text-blue-400" },
-    { name: "JavaScript", icon: Code, color: "text-yellow-500" },
-    { name: "Dart", icon: Code, color: "text-blue-600" },
-    { name: "NodeJS", icon: Server, color: "text-green-500" },
-    { name: "TypeScript", icon: Code, color: "text-blue-500" },
-  ]
+    { name: "Flutter", icon: SiFlutter, color: "text-blue-400" },
+    { name: "Dart", icon: SiDart, color: "text-blue-600" },
+    { name: "Kotlin", icon: SiKotlin, color: "text-purple-500" },
+    { name: "Java", icon: DiJava, color: "text-red-500" },
+    { name: "Android", icon: SiAndroid, color: "text-green-400" },
+    { name: "ReactJS", icon: SiReact, color: "text-blue-500" },
+    { name: "React Native", icon: SiReact, color: "text-blue-500" },
+    { name: "NodeJS", icon: SiNodedotjs, color: "text-green-500" },
+    { name: "TypeScript", icon: SiTypescript, color: "text-blue-500" },
+    { name: "Next.js", icon: SiNextdotjs, color: "text-white" },
+    { name: "JavaScript", icon: SiJavascript, color: "text-yellow-500" },
+    { name: "Spring Boot", icon: SiSpringboot, color: "text-green-500" },
+  ];
 
   const services = [
-    { name: "Postman", icon: Zap, color: "text-orange-500" },
-    { name: "Firebase", icon: Database, color: "text-yellow-500" },
-    { name: "Netlify", icon: Globe, color: "text-teal-500" },
-    { name: "Vercel", icon: Globe, color: "text-white" },
-    { name: "ShadCN UI", icon: Palette, color: "text-gray-400" },
-    { name: "AWS", icon: Server, color: "text-orange-600" },
-    { name: "Tailwind CSS", icon: Palette, color: "text-cyan-500" },
-    { name: "GitHub", icon: Github, color: "text-gray-300" },
-    { name: "Framer Motion", icon: Zap, color: "text-pink-500" },
-  ]
+    { name: "Postman", icon: SiPostman, color: "text-orange-500" },
+    { name: "MongoDB", icon: SiMongodb, color: "text-green-600" },
+    { name: "Firebase", icon: SiFirebase, color: "text-yellow-500" },
+    { name: "Netlify", icon: SiNetlify, color: "text-teal-500" },
+    { name: "Vercel", icon: SiVercel, color: "text-white" },
+    { name: "ShadCN UI", icon: SiShadcnui, color: "text-gray-400" },
+    { name: "AWS", icon: SiAmazonwebservices, color: "text-orange-600" },
+    { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-cyan-500" },
+    { name: "GitHub", icon: SiGithub, color: "text-gray-300" },
+    { name: "Framer Motion", icon: SiFramer, color: "text-pink-500" },
+  ];
 
   return (
     <section ref={ref} className="py-20 px-8 lg:px-16 relative">
@@ -513,7 +692,7 @@ const TechnologiesSection = () => {
                 key={index}
                 initial={{ opacity: 0, scale: 0, rotate: -180 }}
                 animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 className="group"
               >
@@ -521,7 +700,9 @@ const TechnologiesSection = () => {
                   <tech.icon
                     className={`w-8 h-8 mx-auto mb-3 ${tech.color} group-hover:scale-125 transition-transform duration-300`}
                   />
-                  <p className="text-white font-medium group-hover:text-orange-500 transition-colors">{tech.name}</p>
+                  <p className="text-white font-medium group-hover:text-orange-500 transition-colors">
+                    {tech.name}
+                  </p>
                 </Card>
               </motion.div>
             ))}
@@ -543,7 +724,7 @@ const TechnologiesSection = () => {
                 key={index}
                 initial={{ opacity: 0, scale: 0, rotate: 180 }}
                 animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 + 0.8 }}
+                transition={{ duration: 0.6, delay: 0.1}}
                 whileHover={{ scale: 1.1, rotate: -5 }}
                 className="group"
               >
@@ -551,7 +732,9 @@ const TechnologiesSection = () => {
                   <service.icon
                     className={`w-8 h-8 mx-auto mb-3 ${service.color} group-hover:scale-125 transition-transform duration-300`}
                   />
-                  <p className="text-white font-medium group-hover:text-orange-500 transition-colors">{service.name}</p>
+                  <p className="text-white font-medium group-hover:text-orange-500 transition-colors">
+                    {service.name}
+                  </p>
                 </Card>
               </motion.div>
             ))}
@@ -559,51 +742,64 @@ const TechnologiesSection = () => {
         </div>
       </motion.div>
     </section>
-  )
-}
+  );
+};
 
 // Contact section with form
 const ContactSection = () => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [showForm, setShowForm] = useState(false)
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [popup, setPopup] = useState<{
+    message: string;
+    type: "success" | "error";
+  } | null>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
-    })
-  }
+    });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT as string,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      }
+    );
 
-    // Reset form and close modal
-    setFormData({ name: "", email: "", subject: "", message: "" })
-    setIsSubmitting(false)
-    setShowForm(false)
+    setIsSubmitting(false);
+    setShowForm(false);
 
-    // You can replace this with actual form submission logic
-    alert("Message sent successfully!")
-  }
+    if (response.ok) {
+      setPopup({ message: "Message sent successfully!", type: "success" });
+    } else {
+      setPopup({ message: "Failed to send message.", type: "error" });
+    }
+  };
 
   const contactOptions = [
     {
       title: "LinkedIn",
       description: "Connect with me on LinkedIn",
       icon: Linkedin,
-      href: "https://linkedin.com/in/akshat-rai",
+      href: "https://www.linkedin.com/in/akshat-rai-shriv/",
       color: "hover:border-blue-500 hover:text-blue-500",
       action: "external",
     },
@@ -611,7 +807,7 @@ const ContactSection = () => {
       title: "GitHub",
       description: "Follow me on GitHub",
       icon: Github,
-      href: "https://github.com/akshat-rai",
+      href: "https://github.com/AkshatRaiShrivastava",
       color: "hover:border-gray-300 hover:text-gray-300",
       action: "external",
     },
@@ -619,15 +815,15 @@ const ContactSection = () => {
       title: "Instagram",
       description: "Follow me on Instagram",
       icon: Instagram,
-      href: "https://instagram.com/akshat.rai",
+      href: "https://instagram.com/build.gradle.akshat",
       color: "hover:border-pink-500 hover:text-pink-500",
       action: "external",
     },
     {
       title: "Spotify",
       description: "Follow me on Spotify :)",
-      icon: Music,
-      href: "https://open.spotify.com/user/akshat-rai",
+      icon: SiSpotify,
+      href: "https://open.spotify.com/user/314erlctyhbs62oppjaotxq57y3m",
       color: "hover:border-green-500 hover:text-green-500",
       action: "external",
     },
@@ -639,15 +835,15 @@ const ContactSection = () => {
       color: "hover:border-orange-500 hover:text-orange-500",
       action: "form",
     },
-  ]
+  ];
 
   const handleContactClick = (option: (typeof contactOptions)[0]) => {
     if (option.action === "form") {
-      setShowForm(true)
+      setShowForm(true);
     } else {
-      window.open(option.href, "_blank")
+      window.open(option.href, "_blank");
     }
-  }
+  };
 
   return (
     <>
@@ -698,7 +894,9 @@ const ContactSection = () => {
                   >
                     {option.title}
                   </h3>
-                  <p className="text-gray-400 group-hover:text-current transition-colors">{option.description}</p>
+                  <p className="text-gray-400 group-hover:text-current transition-colors">
+                    {option.description}
+                  </p>
                   <ArrowRight className="w-5 h-5 mx-auto mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-0 group-hover:translate-x-2" />
                 </Card>
               </motion.div>
@@ -820,7 +1018,11 @@ const ContactSection = () => {
                   {isSubmitting ? (
                     <motion.div
                       animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                      transition={{
+                        duration: 1,
+                        repeat: Number.POSITIVE_INFINITY,
+                        ease: "linear",
+                      }}
                       className="w-4 h-4 border-2 border-white border-t-transparent rounded-full mr-2"
                     />
                   ) : (
@@ -834,7 +1036,10 @@ const ContactSection = () => {
             <div className="mt-8 pt-6 border-t border-gray-700">
               <p className="text-gray-400 text-center text-sm">
                 Or reach out to me directly at{" "}
-                <a href="mailto:akshat.rai@example.com" className="text-orange-500 hover:underline">
+                <a
+                  href="mailto:akshat.rai@example.com"
+                  className="text-orange-500 hover:underline"
+                >
                   akshat.rai@example.com
                 </a>
               </p>
@@ -843,8 +1048,65 @@ const ContactSection = () => {
         </motion.div>
       )}
     </>
-  )
-}
+  );
+};
+
+const AnimatedPopup = ({
+  message,
+  type,
+  onClose,
+}: {
+  message: string;
+  type: "success" | "error";
+  onClose: () => void;
+}) => (
+  <motion.div
+    initial={{ opacity: 0, y: 40, scale: 0.9 }}
+    animate={{ opacity: 1, y: 0, scale: 1 }}
+    exit={{ opacity: 0, y: 40, scale: 0.9 }}
+    transition={{ duration: 0.4 }}
+    className={`fixed top-8 left-1/2 z-[100] -translate-x-1/2 px-6 py-4 rounded-xl shadow-lg flex items-center gap-3
+      ${
+        type === "success" ? "bg-green-600 text-white" : "bg-red-600 text-white"
+      }
+    `}
+    role="alert"
+  >
+    {type === "success" ? (
+      <svg
+        className="w-6 h-6 text-white"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+      </svg>
+    ) : (
+      <svg
+        className="w-6 h-6 text-white"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    )}
+    <span>{message}</span>
+    <button
+      onClick={onClose}
+      className="ml-4 text-white hover:text-gray-200 focus:outline-none"
+      aria-label="Close"
+    >
+      <X className="w-5 h-5" />
+    </button>
+  </motion.div>
+);
 
 // Footer
 const Footer = () => {
@@ -866,25 +1128,28 @@ const Footer = () => {
           className="text-gray-400 text-center"
         >
           This website is open source on{" "}
-          <a href="#" className="text-orange-500 hover:underline">
+          <a
+            href="https://github.com/AkshatRaiShrivastava/akshat-portfolio-nextjs"
+            className="text-orange-500 hover:underline"
+          >
             GitHub
           </a>
         </motion.p>
       </div>
     </footer>
-  )
-}
+  );
+};
 
 // Main component
 export default function Portfolio() {
-  const [mounted, setMounted] = useState(false)
-  const [showForm, setShowForm] = useState(false)
+  const [mounted, setMounted] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
-  if (!mounted) return null
+  if (!mounted) return null;
 
   // Pass setShowForm to HeroSection
   return (
@@ -899,5 +1164,5 @@ export default function Portfolio() {
       <ContactSection />
       <Footer />
     </div>
-  )
+  );
 }

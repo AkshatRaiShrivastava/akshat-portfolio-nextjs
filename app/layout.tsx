@@ -8,7 +8,8 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Akshat Rai - Portfolio",
   description: "Full-Stack Developer and Android Enthusiast",
-    generator: 'v0.dev'
+    generator: 'v0.dev',
+    
 }
 
 export default function RootLayout({
@@ -18,6 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <link rel="icon" href="/assets/akshat_logo.png" />
       <body className={inter.className}>{children}</body>
     </html>
   )
