@@ -1217,7 +1217,7 @@ export default function Portfolio() {
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
       <FloatingParticles />
       <AnimatedGrid />
-
+      
       <HeroSection setShowForm={setShowForm} />
       <ExperienceSection />
       <ProjectsSection />
