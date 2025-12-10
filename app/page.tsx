@@ -326,7 +326,7 @@ const ExperienceSection = () => {
     {
       title: "Mobile App Developer",
       company: "Social Chitra",
-      period: "June 2025 - present",
+      period: "June 2025 - Sep 2025",
       description: "Developing a SaaS platform for sports industry",
       technologies: ["Flutter", "Dart", "Android", "iOS", "Firebase", "Nodejs"],
     },
