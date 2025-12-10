@@ -456,7 +456,7 @@ const ProjectsSection = () => {
       title:"SPM Spring Backend",
       description:"A production-ready microservice designed for real-time industrial machine data monitoring. It leverages PostgreSQL's LISTEN/NOTIFY mechanism to push database changes instantly to connected clients via WebSockets, eliminating the need for polling and ensuring minimal latency.",
       image:"/assets/pr11.png",
-      technologies:["Java", "Spring Boot", "PostgreSQL","Maven"],
+      technologies:["Java", "Spring Boot","Web Socket", "PostgreSQL","Maven"],
       github:"https://github.com/AkshatRaiShrivastava/spm-backend",
       period:"Nov 2025 - Dec 2025"
     },
