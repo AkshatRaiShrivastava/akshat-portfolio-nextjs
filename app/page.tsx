@@ -58,6 +58,7 @@ import {
   SiShadcnui,
   SiSpotify,
 } from "react-icons/si";
+import { title } from "process";
 
 // Floating particles component
 const FloatingParticles = () => {
@@ -443,6 +444,23 @@ const ProjectsSection = () => {
 
   const projects = [
     {
+      title:"SPM Android App",
+      description:"An Android application demonstrating a full-stack, real-time data synchronization pipeline. Data flows seamlessly from a PostgreSQL database through a Spring Boot backend via WebSockets to a native Android UI built with Jetpack Compose.",
+      image:"/assets/pr10.png",
+      technologies:["Kotlin", "Web Sockets", "PostgreSQL", "Android"],
+      github:"https://github.com/AkshatRaiShrivastava/spm-android",
+      demo:"https://github.com/AkshatRaiShrivastava/spm-android/releases/tag/app",
+      period:"Nov 2025 - Dec 2025"
+    },
+    {
+      title:"SPM Spring Backend",
+      description:"A production-ready microservice designed for real-time industrial machine data monitoring. It leverages PostgreSQL's LISTEN/NOTIFY mechanism to push database changes instantly to connected clients via WebSockets, eliminating the need for polling and ensuring minimal latency.",
+      image:"/assets/pr11.png",
+      technologies:["Java", "Spring Boot", "PostgreSQL","Maven"],
+      github:"https://github.com/AkshatRaiShrivastava/spm-backend",
+      period:"Nov 2025 - Dec 2025"
+    },
+    {
       title: "Clean City App",
       description:
         "CleanCity is a tech-driven platform that empowers citizens to report and track urban sanitation issues in real-time. It bridges the gap between communities and authorities to create cleaner, smarter, and more sustainable cities.",
@@ -576,7 +594,7 @@ const ProjectsSection = () => {
               whileHover={{ scale: 1.03, y: -6 }}
               className="group"
             >
-              <Card className="bg-gray-800/50 backdrop-blur-sm border-gray-700 hover:border-orange-500/50 transition-all duration-300 overflow-hidden h-full">
+              <Card className="bg-gray-800/50  border-gray-700 hover:border-orange-500/50 transition-all duration-300 overflow-hidden h-full">
                 <CardContent className="p-6 flex flex-col h-full relative">
                   {/* Image and overlay */}
                   <div className="relative mb-4">
@@ -585,7 +603,7 @@ const ProjectsSection = () => {
                       alt={project.title}
                       width={400}
                       height={300}
-                      className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-100 rounded-lg"
+                      className="w-full h-48 object-contain transition-transform duration-300 group-hover:scale-100 rounded-lg"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60 rounded-lg"></div>
                     <Badge className="absolute top-4 right-4 bg-orange-500 text-white">
