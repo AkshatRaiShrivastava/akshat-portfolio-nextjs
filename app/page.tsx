@@ -308,7 +308,7 @@ const ExperienceSection = () => {
 
   const experiences = [
     {
-      title: "Co-Founder & CEO",
+      title: "Co-Founder",
       company: "NexYug Tech",
       period: "Feb 2025 - Present",
       description:
