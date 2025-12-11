@@ -314,8 +314,6 @@ const ExperienceSection = () => {
       description:
         "Building NexYug Tech, a startup where we create cutting-edge software solutions for web, mobile, and AI applications that transform businesses and drive innovation.",
       technologies: [
-        "Mentorship",
-        "Guidance",
         "Android",
         "Web",
         "AI",
