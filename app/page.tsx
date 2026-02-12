@@ -847,22 +847,24 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const response = await fetch(
-      process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT as string,
-      {
+    try {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message.");
       }
-    );
 
-    setIsSubmitting(false);
-    setShowForm(false);
-
-    if (response.ok) {
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setShowForm(false);
       setPopup({ message: "Message sent successfully!", type: "success" });
-    } else {
+    } catch {
       setPopup({ message: "Failed to send message.", type: "error" });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -981,6 +983,14 @@ const ContactSection = () => {
           </div>
         </motion.div>
       </section>
+
+      {popup && (
+        <AnimatedPopup
+          message={popup.message}
+          type={popup.type}
+          onClose={() => setPopup(null)}
+        />
+      )}
 
       {/* Contact Form Modal */}
       {showForm && (
