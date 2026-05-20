@@ -308,20 +308,6 @@ const ExperienceSection = () => {
 
   const experiences = [
     {
-      title: "Co-Founder",
-      company: "NexYug Tech",
-      period: "Feb 2025 - Present",
-      description:
-        "Building NexYug Tech, a startup where we create cutting-edge software solutions for web, mobile, and AI applications that transform businesses and drive innovation.",
-      technologies: [
-        "Android",
-        "Web",
-        "AI",
-        "Desktop",
-        "iOS",
-      ],
-    },
-    {
       title: "Mobile App Developer",
       company: "Social Chitra",
       period: "June 2025 - Sep 2025",
